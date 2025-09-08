@@ -1,19 +1,39 @@
 import type { Preview } from '@storybook/react-vite';
 
-const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
+// @ts-ignore
+import '../src/shared/styles/index.scss';
 
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo',
+import { themes } from 'storybook/theming';
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
+
+const preview: Preview = {
+  globalTypes: {
+    parameters: {
+      docs: {
+        theme: themes.dark,
+      },
+      backgrounds: {
+        default: 'dark',
+        values: [
+          {
+            name: 'dark',
+            value: '#110f10',
+          },
+          {
+            name: 'page',
+            value: '#171a1e',
+          },
+        ],
+      },
+      controls: {
+        matchers: {
+          color: /(background|color)$/i,
+          date: /Date$/i,
+        },
+      },
+      viewport: {
+        options: MINIMAL_VIEWPORTS,
+      },
     },
   },
 };
